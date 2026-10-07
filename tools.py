@@ -20,6 +20,7 @@ That last line is what your loop branches on. "Returns a list" earns nothing —
 the description has to say what is *in* the list.
 """
 
+import keyword
 import config  # noqa: F401 — you'll use this in search_listings
 from generate import generate
 from utils.data_loader import load_listings
@@ -78,8 +79,22 @@ def search_listings(
     Test it from a terminal before you move on:
         python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
     """
-    # TODO: replace this with your implementation
-    return []
+    listings = load_listings()
+    if max_price is None:
+        price_filtered_listing = listings
+    else:
+        price_filtered_listing = [
+            listing for listing in listings if listing["price"] <= max_price]    
+    price_and_size_filtered_listing = [listing for listing in price_filtered_listing if size is None or size in listing["size"]]
+    scored = []
+    for listing in price_and_size_filtered_listing:
+        score = keyword_score(description, listing)
+        if score >= 1:
+            scored.append((score, listing))
+    scored.sort(key=lambda pair: pair[0], reverse=True)
+
+
+    return [listing for _, listing in scored[:config.SEARCH_RESULT_LIMIT]]
 
 
 # ── Tool 2: suggest_outfit ────────────────────────────────────────────────────
@@ -112,8 +127,34 @@ def suggest_outfit(new_item: dict, wardrobe: dict) -> str:
     Test it from a terminal before you move on:
         python -c "from tools import suggest_outfit; from utils.data_loader import get_example_wardrobe, load_listings; print(suggest_outfit(load_listings()[0], get_example_wardrobe()))"
     """
-    # TODO: replace this with your implementation
-    return ""
+    item_text = (
+        f"{new_item['title']} — {new_item['category']}, "
+        f"size {new_item['size']}, ${new_item['price']}, "
+        f"colors {', '.join(new_item['colors'])}. "
+        f"{new_item['description']}"
+    )
+    items = wardrobe.get("items", [])
+    if not items:
+        prompt = (
+            "Suggest one or two outfits for this thrift find. "
+            "The user has no wardrobe on file, so give general styling ideas "
+            "and do not name specific clothes they already own.\n\n"
+            f"Item: {item_text}"
+        )
+    else:
+        closet = "\n".join(
+            f"- {piece['name']} ({piece['category']}; "
+            f"colors: {', '.join(piece['colors'])})"
+            for piece in items
+        )
+        prompt = (
+            "Suggest one or two outfits that combine this thrift find with "
+            "pieces the user already owns. Name those pieces exactly as listed. "
+            "Do not invent clothes that are not in the wardrobe.\n\n"
+            f"New item: {item_text}\n\n"
+            f"Wardrobe:\n{closet}"
+        )
+    return generate(prompt)
 
 
 # ── Tool 3: create_fit_card ───────────────────────────────────────────────────
@@ -152,5 +193,30 @@ def create_fit_card(outfit: str, new_item: dict) -> str:
     Test it from a terminal before you move on:
         python -c "from tools import create_fit_card; from utils.data_loader import load_listings; print(create_fit_card('jeans and white sneakers', load_listings()[0]))"
     """
-    # TODO: replace this with your implementation
-    return ""
+    if not outfit or not outfit.strip():
+        return (
+            f"No outfit to caption yet for {new_item['title']} "
+            f"(${new_item['price']} on {new_item['platform']})."
+        )
+    prompt = (
+        "Write a 2 to 4 sentence social post about this thrift find. "
+        "Sound like a person posting, not a product description. "
+        "Mention the item, its price, and the platform once each. "
+        "Be specific about the vibe, and use the outfit below.\n\n"
+        f"Item: {new_item['title']}\n"
+        f"Price: ${new_item['price']}\n"
+        f"Platform: {new_item['platform']}\n"
+        f"Description: {new_item['description']}\n\n"
+        f"Outfit: {outfit.strip()}"
+    )
+    return generate(prompt)
+
+
+def keyword_score(query: str, listing: dict) -> int:
+    keywords = set(query.lower().split())
+    text = " ".join([
+        listing["title"],
+        listing["description"],
+        " ".join(listing["style_tags"]),
+    ]).lower()
+    return len(keywords & set(text.split()))
