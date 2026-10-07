@@ -25,9 +25,7 @@ Given a query that matches at least one listing, the agent completes all three
 tool calls and returns a fit card — in at least 4 of 5 tries.
 
 **Why this target:**
-<!-- Why 4 of 5 and not 5 of 5? Something about your search, probably —
-     "my search is a plain keyword match and some phrasings will miss" is a
-     real answer. -->
+4 of 5, not 5 of 5, because search is a plain word overlap on the title, description, and style tags. A phrasing that does not share those words comes back empty even when a person would call it a match. When the list is not empty, the loop always continues to the fit card, so the miss comes from the keywords, not from the branch.
 
 ---
 
@@ -37,64 +35,34 @@ Given a query that matches no listings, the agent stops before calling
 `suggest_outfit` and returns a message naming what to change — 5 of 5 tries.
 
 **Why this target:**
-<!-- Why is 5 of 5 reasonable here when criterion 1 isn't? What's different
-     about this path? -->
+5 of 5 is reasonable here because this path never calls the model. `run_agent` checks for an empty list and returns before `suggest_outfit`. The same empty list produces the same stop every time. Criterion 1 can miss when the words do not overlap; this one is already past that, and the only question is whether the branch fires.
 
 ---
 
-## 3. Something about state
+## 3. The chosen listing is the one the later tools receive
 
-<!-- YOU WRITE THIS ONE.
-
-     How would you know that the item your search found is the same item the
-     next tool received? Name something countable or observable.
-
-     This is the criterion people find hardest, because state failure doesn't
-     look like state failure — it looks like a tool problem. Something that
-     compares session["selected_item"] against what actually reached
-     suggest_outfit is the shape you're after. -->
-
-
+On a matching query, `session["selected_item"]["id"]` equals `session["search_results"][0]["id"]`, and that same id is the `new_item` passed into both `suggest_outfit` and `create_fit_card` — in 5 of 5 tries.
 
 **Why this target:**
-
-
+5 of 5, because the handoff is the session dict, not a guess by the model. `run_agent` stores `search_results[0]` and passes that object into the next two tools. A miss here would be the loop picking a different row, which this code does not do. Wording inside the outfit or the caption can still drift; this criterion checks the id, which does not.
 
 ---
 
-## 4. Something about the fit card
+## 4. A fit card names the price and the platform
 
-<!-- YOU WRITE THIS ONE.
-
-     The fit card calls a model, so the same input can produce different words
-     each time. That's not a bug — it's the nature of the tool. So what would
-     make it acceptable?
-
-     Think about what you'd actually be unhappy to see. A caption that never
-     mentions the price? Two different items producing the same opening
-     sentence? A card longer than a caption anyone would post? Any of those can
-     be turned into a number. -->
-
-
+For 5 different selected listings, each fit card mentions that listing's price and its platform, and no two of the five cards are the same string — 5 of 5.
 
 **Why this target:**
-
-
+The caption calls the model, so the sentences are allowed to change. What would be unacceptable is a card that drops the price or the platform, or five different items producing one shared caption. Those two facts are in the prompt, so 5 of 5 is a fair check. Requiring the same words every time would fight `TEMPERATURE` at 0.9, and judging "vibe" would not be something another person could score from the sentence alone.
 
 ---
 
-## 5. Your choice
+## 5. A price ceiling drops anything over it
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. Speed, the empty
-     wardrobe path, what happens when the model can't be reached, whether the
-     search respects a price ceiling — anything, as long as it names a number
-     or an observable outcome. -->
-
-
+For 5 queries that include `under $N`, every listing in `session["search_results"]` has `price` less than or equal to N — 5 of 5.
 
 **Why this target:**
+5 of 5, because the ceiling is a number comparison in `search_listings`, not a model judgment. When `max_price` is missing, the filter is skipped on purpose; this criterion only covers queries that actually name a dollar amount. I did not add size to the same rule. Size is a substring check, and a letter like `l` matches inside `XL`, so a 5 of 5 size claim would be stricter than the filter can support.
 
 
 
