@@ -17,6 +17,7 @@ import config
 import trace
 from tools import search_listings, suggest_outfit, create_fit_card
 from generate import ModelUnavailable
+import re
 
 
 # ── session state ─────────────────────────────────────────────────────────────
@@ -106,10 +107,36 @@ def run_agent(query: str, wardrobe: dict) -> dict:
         than a stack trace. The import is already at the top of this file.
     """
     session = new_session(query, wardrobe)
+    count = 0
 
-    # TODO: delete these two lines and build the loop.
-    session["error"] = "The planning loop isn't built yet — see the TODO in agent.py."
+    while count < config.MAX_ITERATIONS:
+        count += 1
+        trace.check_iterations(count)
+
+        session["parsed"] = parse_query(session["query"])
+        parsed = session["parsed"]
+        session["search_results"] = search_listings(
+            parsed["description"],
+            size=parsed["size"],
+            max_price=parsed["max_price"],
+        )
+
+        if not session["search_results"]:
+            session["error"] = (
+                "Nothing matched those keywords, size, and price. "
+                "Try a higher budget, drop the size, or use different words."
+            )
+            return session
+
+        session["selected_item"] = session["search_results"][0]
+        session["outfit_suggestion"] = suggest_outfit(
+            session["selected_item"], session["wardrobe"]
+        )
+        session["fit_card"] = create_fit_card(
+            session["outfit_suggestion"], session["selected_item"]
+        )
     return session
+
 
 
 # ── running it directly ───────────────────────────────────────────────────────
@@ -145,3 +172,16 @@ if __name__ == "__main__":
         "\nThe second one should stop before the fit card. If both paths look "
         "the same,\nthe branch isn't doing anything yet."
     )
+
+
+def parse_query(query: str) -> dict:
+    price = re.search(r"\$(\d+(?:\.\d+)?)", query)
+    size = re.search(r"\bsize\s+([A-Za-z0-9/]+)", query, re.IGNORECASE)
+    description = re.sub(r"\$\d+(?:\.\d+)?", " ", query)
+    description = re.sub(r"\b(under|size)\b", " ", description, flags=re.IGNORECASE)
+    description = re.sub(r"\s+", " ", description).strip(" ,")
+    return {
+        "description": description,
+        "size": size.group(1) if size else None,
+        "max_price": float(price.group(1)) if price else None,
+    }
