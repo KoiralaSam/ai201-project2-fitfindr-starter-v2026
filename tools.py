@@ -90,10 +90,13 @@ def search_listings(
     needed = len(set(description.lower().split()))
     for listing in price_and_size_filtered_listing:
         score = keyword_score(description, listing)
-        # Every query word has to appear. A single shared word was enough
-        # to rank a vintage tee first for "vintage denim".
-        if needed and score == needed:
+        if score >= 1:
             scored.append((score, listing))
+    # Prefer listings that contain every query word. If none do, keep the
+    # partial matches so a query like "vintage denim" still returns something.
+    full = [pair for pair in scored if pair[0] == needed]
+    if full:
+        scored = full
     scored.sort(key=lambda pair: pair[0], reverse=True)
 
 
