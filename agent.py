@@ -15,6 +15,7 @@ Build and test your three tools in `tools.py` first. Then come here.
 
 import config
 import trace
+import mcp_client
 from tools import search_listings, suggest_outfit, create_fit_card
 from generate import ModelUnavailable
 import re
@@ -108,6 +109,7 @@ def run_agent(query: str, wardrobe: dict) -> dict:
     """
     session = new_session(query, wardrobe)
     count = 0
+    trace.start_trace()
 
     while count < config.MAX_ITERATIONS:
         count += 1
@@ -115,10 +117,31 @@ def run_agent(query: str, wardrobe: dict) -> dict:
 
         session["parsed"] = parse_query(session["query"])
         parsed = session["parsed"]
-        session["search_results"] = search_listings(
-            parsed["description"],
-            size=parsed["size"],
-            max_price=parsed["max_price"],
+        trace.step(
+            "parse_query",
+            inputs=session["query"],
+            returned=(
+                f"description={parsed['description']!r}, "
+                f"size={parsed['size']!r}, max_price={parsed['max_price']}"
+            ),
+        )
+
+        search_inputs = {
+            "description": parsed["description"],
+            "size": parsed["size"],
+            "max_price": parsed["max_price"],
+        }
+        session["search_results"] = mcp_client.call_tool(
+            "search_listings", search_inputs
+        )
+        trace.step(
+            "search_listings (via MCP)",
+            inputs=(
+                f"description={parsed['description']!r}, "
+                f"size={parsed['size']!r}, max_price={parsed['max_price']}"
+            ),
+            returned=session["search_results"],
+            note="" if session["search_results"] else "branch: empty, stopping",
         )
 
         if not session["search_results"]:
@@ -129,12 +152,45 @@ def run_agent(query: str, wardrobe: dict) -> dict:
             return session
 
         session["selected_item"] = session["search_results"][0]
-        session["outfit_suggestion"] = suggest_outfit(
-            session["selected_item"], session["wardrobe"]
-        )
-        session["fit_card"] = create_fit_card(
-            session["outfit_suggestion"], session["selected_item"]
-        )
+        try:
+            session["outfit_suggestion"] = suggest_outfit(
+                session["selected_item"], session["wardrobe"]
+            )
+            trace.step(
+                "suggest_outfit",
+                inputs=(
+                    f"{session['selected_item']['title']} "
+                    f"(${session['selected_item']['price']}, "
+                    f"{session['selected_item']['platform']}), "
+                    f"wardrobe items={len(session['wardrobe'].get('items', []))}"
+                ),
+                returned=session["outfit_suggestion"],
+            )
+
+            session["fit_card"] = create_fit_card(
+                session["outfit_suggestion"], session["selected_item"]
+            )
+            trace.step(
+                "create_fit_card",
+                inputs=(
+                    f"outfit for {session['selected_item']['title']} "
+                    f"(${session['selected_item']['price']}, "
+                    f"{session['selected_item']['platform']})"
+                ),
+                returned=session["fit_card"],
+            )
+        except ModelUnavailable as exc:
+            session["error"] = (
+                "The model couldn't be reached, so I stopped before writing "
+                f"the outfit and the caption. {exc}"
+            )
+            trace.step(
+                "model",
+                inputs=session["selected_item"]["title"],
+                returned=session["error"],
+                note="branch: model unavailable, stopping",
+            )
+            return session
         return session
 
     return session
