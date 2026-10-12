@@ -328,11 +328,13 @@ def generate(
                 or "resource" in message and "exhaust" in message
                 or "rate" in message and "limit" in message
             )
-            if not rate_limited:
+            unavailable = "503" in message or "unavailable" in message
+            if not rate_limited and not unavailable:
                 raise ModelUnavailable(_explain(exc)) from exc
             backoff = _retry_delay(exc, attempt)
+            reason = "model unavailable" if unavailable else "service pushed back"
             print(
-                f"  [rate limit] service pushed back. Waiting {backoff:.0f}s "
+                f"  [retry] {reason}. Waiting {backoff:.0f}s "
                 f"(attempt {attempt + 1} of {config.MAX_RETRIES}). This is "
                 f"the limiter doing its job, not a bug.",
                 file=sys.stderr,
@@ -340,6 +342,9 @@ def generate(
             )
             time.sleep(backoff)
 
+    last_message = str(last_error).lower() if last_error else ""
+    if "503" in last_message or "unavailable" in last_message:
+        raise ModelUnavailable(_explain(last_error)) from last_error
     raise RuntimeError(
         f"Still rate limited after {config.MAX_RETRIES} attempts. Wait a "
         f"minute and try again — your key is fine.\nLast error: {last_error}"
