@@ -87,9 +87,12 @@ def search_listings(
             listing for listing in listings if listing["price"] <= max_price]    
     price_and_size_filtered_listing = [listing for listing in price_filtered_listing if size is None or size in listing["size"]]
     scored = []
+    needed = len(set(description.lower().split()))
     for listing in price_and_size_filtered_listing:
         score = keyword_score(description, listing)
-        if score >= 1:
+        # Every query word has to appear. A single shared word was enough
+        # to rank a vintage tee first for "vintage denim".
+        if needed and score == needed:
             scored.append((score, listing))
     scored.sort(key=lambda pair: pair[0], reverse=True)
 
