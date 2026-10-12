@@ -35,7 +35,51 @@ SCENARIOS = [
         "wardrobe": "empty",
         "criterion": None,
     },
-    # TODO: add what your criteria 3, 4 and 5 need.
+    {
+        # Criterion 3: the listing stored on the session is the one passed on.
+        "name": "selected item is the one passed on",
+        "query": "90s track jacket under $50",
+        "wardrobe": "example",
+        "criterion": 3,
+    },
+    {
+        # Criterion 4: five different listings, judged across these five scenarios.
+        "name": "fit card for baby tee",
+        "query": "vintage graphic tee under $30",
+        "wardrobe": "example",
+        "criterion": 4,
+    },
+    {
+        "name": "fit card for track jacket",
+        "query": "90s track jacket under $60",
+        "wardrobe": "example",
+        "criterion": 4,
+    },
+    {
+        "name": "fit card for flannel",
+        "query": "flannel shirt under $40",
+        "wardrobe": "example",
+        "criterion": 4,
+    },
+    {
+        "name": "fit card for corduroy",
+        "query": "corduroy pants under $40",
+        "wardrobe": "example",
+        "criterion": 4,
+    },
+    {
+        "name": "fit card for bomber",
+        "query": "leather bomber under $80",
+        "wardrobe": "example",
+        "criterion": 4,
+    },
+    {
+        # Criterion 5: every returned listing is at or under the named ceiling.
+        "name": "price ceiling holds",
+        "query": "vintage denim under $20",
+        "wardrobe": "example",
+        "criterion": 5,
+    },
     #
     # Set "criterion" to the number in criteria.md that the scenario tests.
     # "criterion": None means a diagnostic run — useful to have, but it isn't
