@@ -19,6 +19,7 @@ import mcp_client
 from tools import search_listings, suggest_outfit, create_fit_card
 from generate import ModelUnavailable
 import re
+from observability import logged
 
 
 # ── session state ─────────────────────────────────────────────────────────────
@@ -51,6 +52,7 @@ def new_session(query: str, wardrobe: dict) -> dict:
 
 # ── planning loop ─────────────────────────────────────────────────────────────
 
+@logged("agent")
 def run_agent(query: str, wardrobe: dict) -> dict:
     """
     Run the loop once and return the finished session.
