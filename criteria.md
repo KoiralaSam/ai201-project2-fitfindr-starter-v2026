@@ -99,3 +99,13 @@ For 5 queries that include `under $N`, every listing in `session["search_results
      A number you missed stays where it is, gets diagnosed, and gets a fix
      attempted. That's where the points are.
      ───────────────────────────────────────────────────────────────────────── -->
+
+# Capstone acceptance criteria
+
+These five criteria apply to the platform-filter extension, separately from the original Unit 3/4 criteria above. Each trial executes every case in its criterion; repeat three times without code changes. Criteria are fixed before execution. AI assisted with drafting these criteria; this differs from the brief's unaided-authorship requirement.
+
+1. **Platform isolation:** For `tee on depop`, `jacket on poshmark`, and `flannel on thredUp`, each search returns at least one listing and every listing belongs to the named platform. Target: 3/3 cases in every trial. Reason: silently showing another marketplace defeats this feature; empty results cannot pass vacuously.
+2. **Case-independent platform syntax:** `tee on DEPOP`, `jacket ON POSHMARK`, and `flannel on thredup` return the same ordered IDs as their canonical spellings in criterion 1. Target: 3/3 per trial. Reason: platform names are proper names that users capitalize differently; ranking must remain unchanged.
+3. **Unavailable platform and empty result:** `tee on ebay` and `ballgown under $1 on depop` return no listings and a message naming a change the user can make, without calling a model. Target: 2/2 per trial. Reason: neither an unsupported marketplace nor no matches should silently widen the user's constraints.
+4. **Existing constraints remain intact:** `graphic tee under $30`, `jacket under $50`, and `flannel under $25` return the same ordered IDs as direct legacy search with no platform; the corresponding platform-filtered queries return only matching-platform items within the same budget. Target: 3/3 per trial. Reason: the extension must preserve the original search and its price ceiling.
+5. **Observable local runs:** Three requests (`tee on depop`, `tee on ebay`, and an empty string) each append exactly one parseable JSON record containing UTC timestamp, input, output, status, unique run ID, and nonnegative duration in seconds; rejected empty input is logged as an error. Target: 3/3 per trial. Reason: missing failure records prevent diagnosis, while duplicate records distort cost measurements.

@@ -434,3 +434,13 @@ It did not help the scores. Criterion 1 went from 5 of 5 to 3 of 5. Tries 4 and 
 ---
 
 📖 **How to run this project: [RUNNING.md](RUNNING.md)**
+
+## Capstone
+
+**What This Extends**
+
+Project 2, FitFindr: add platform filtering to the existing listing search and pass it through the MCP tool and agent query parser. A request such as `graphic tee under $30 on depop` restricts results to that marketplace.
+
+**The Shape**
+
+Shape C — extend one capability: platform filtering. Path B — local with logs. Out of scope: hosting, a new interface, changing the ranking algorithm, and changing outfit/caption generation. The local search command exercises the same parser and MCP search used by the agent without requiring paid model calls.
