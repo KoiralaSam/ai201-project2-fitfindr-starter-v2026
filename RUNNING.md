@@ -246,3 +246,50 @@ history is what shows your criteria existed before your results did.
 units.
 
 `results/` is deliberately **not** in `.gitignore`.
+
+## Capstone — Path B (local with logs)
+
+Tested environment: Python 3.13.16. Install the exact resolved dependencies
+from `requirements-lock.txt` (the original supported bounds remain in
+`requirements.txt`). No local model files are needed: 0 bytes of model weights.
+
+From a clean checkout:
+
+```bash
+python3.13 -m venv .venv
+.venv/bin/python -m pip install -r requirements-lock.txt
+```
+
+Single start/run command, from the repository root:
+
+```bash
+.venv/bin/python capstone.py 'graphic tee under $30 on depop'
+```
+
+This makes a real stdio MCP call against the local dataset, prints JSON, and
+appends a record to `logs/runs.jsonl`. It needs no API key or network after
+installation. Exit code 1 means rejected input or no matches. Use a trailing
+`on PLATFORM` clause; supported marketplaces are depop, poshmark, and thredUp.
+Omitting it searches all marketplaces. Unknown platforms return no matches.
+
+To use the same feature with the original outfit and caption agent, configure
+`GEMINI_API_KEY` in an untracked `.env` using `.env.example`, then run:
+
+```bash
+AI201_CACHE=0 .venv/bin/python app.py ask 'graphic tee under $30 on depop'
+```
+
+Path B means local execution, not a local language model. Full outfit generation
+still calls Gemini over the network. Both the search command and agent append
+structured records. Override the destination with `FITFINDR_LOG=/path/to/run.jsonl`.
+Records contain queries and outputs; use synthetic queries for committed evidence.
+
+Reproduce the capstone evaluation with:
+
+```bash
+.venv/bin/python capstone_eval.py --label reproduction
+```
+
+Each label must be new, protecting the saved before/after evidence. Evaluation
+covers the deterministic search extension using real MCP calls; it does not
+score the quality of model-generated captions.
