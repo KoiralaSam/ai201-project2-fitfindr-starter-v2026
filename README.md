@@ -13,8 +13,7 @@
 > python app.py ask 'vintage graphic tee under $30'
 > ```
 >
-> All three tools are stubs, so that last command will do nothing useful yet.
-> That's the starting position.
+> The tools are implemented. The capstone section below documents platform filtering.
 >
 > **The rest of this file is your submission.** Fill it in as you go.
 
@@ -444,3 +443,644 @@ Project 2, FitFindr: add platform filtering to the existing listing search and p
 **The Shape**
 
 Shape C — extend one capability: platform filtering. Path B — local with logs. Out of scope: hosting, a new interface, changing the ranking algorithm, and changing outfit/caption generation. The local search command exercises the same parser and MCP search used by the agent without requiring paid model calls.
+
+**Running It**
+
+Path B — local with logs. Follow [RUNNING.md](RUNNING.md#capstone--path-b-local-with-logs).
+The single command is `.venv/bin/python capstone.py 'graphic tee under $30 on depop'`.
+It runs the real MCP server locally and exits. No API key is needed for search.
+The original `app.py ask` path uses the same extension, then calls Gemini for
+outfits and captions. Both paths write JSONL records.
+
+A fresh clone in `/tmp/fitfindr-capstone-clean-20261117` was set up with a new
+Python 3.13.16 virtual environment and `requirements-lock.txt`. The documented
+command returned matching Depop listings. After updating to the improvement,
+`flannel on THREDUP` returned thredUp listings. `pip check` reported
+`No broken requirements found.` No local weights are required (0 bytes).
+The clean-checkout output is preserved in `results/capstone_clean_checkout.txt`.
+
+**Instrumentation**
+
+`observability.py::logged` wraps `capstone.py::search` and
+`agent.py::run_agent`. Each record includes a UUID, UTC timestamp, operation,
+input query, full output, status, and elapsed seconds measured by
+`time.perf_counter()`. The timer includes parsing and MCP process startup;
+agent records also include model generation. A `finally` block records raised
+exceptions before propagating them. Empty results and rejected input record
+an error status too. Runtime records append to `logs/runs.jsonl`; committed
+evidence lives in `results/`. CLI JSON output is separate from the log file.
+
+Ten actual measured search records follow, then one rejected-input record.
+These are copied verbatim from `results/capstone_cost.jsonl` and
+`results/capstone_after/runs.jsonl`. These are real MCP runs, not mocks.
+Repeated search outputs are expected because search is deterministic.
+
+```jsonl
+{"run_id": "4c2a99b6-eaab-449c-9643-6ead69daa810", "timestamp": "2026-11-18T03:25:34.800392+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.7568447086960077}
+{"run_id": "c651cc77-9630-459c-8fcf-9ee73eaab843", "timestamp": "2026-11-18T03:25:35.558186+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.4552454580552876}
+{"run_id": "7a11679f-1ab8-431a-8b3b-314bc736cd4e", "timestamp": "2026-11-18T03:25:36.013887+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.43773870822042227}
+{"run_id": "3cee176a-5890-48da-811a-073212b84fe6", "timestamp": "2026-11-18T03:25:36.452072+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.44024179177358747}
+{"run_id": "d67fc3f1-4058-4662-ab1d-695c338a9a02", "timestamp": "2026-11-18T03:25:36.892776+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.43994791712611914}
+{"run_id": "d54ddbfd-61b7-4f15-bd0b-a0f6de283731", "timestamp": "2026-11-18T03:25:37.333218+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.46641279198229313}
+{"run_id": "23a4fbc4-bc66-4ed7-8490-d0318fa3fbca", "timestamp": "2026-11-18T03:25:37.800355+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.47367183305323124}
+{"run_id": "1d3e2c5e-d78f-4182-9ce6-4bbe1b90664f", "timestamp": "2026-11-18T03:25:38.274821+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.44378049997612834}
+{"run_id": "a4b3d944-26b4-4123-acbf-e8c8e5d91c6d", "timestamp": "2026-11-18T03:25:38.719092+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.4601892908103764}
+{"run_id": "2644c6d7-d427-4323-9bfb-2fdd26d46f34", "timestamp": "2026-11-18T03:25:39.180046+00:00", "operation": "search", "input": "graphic tee under $30 on depop", "output": {"parsed": {"platform": "depop", "description": "graphic tee", "size": null, "max_price": 30.0}, "results": [{"id": "lst_002", "title": "Y2K Baby Tee — Butterfly Print", "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.", "category": "tops", "style_tags": ["y2k", "vintage", "graphic tee", "cottagecore"], "size": "S/M", "condition": "excellent", "price": 18.0, "colors": ["white", "pink", "purple"], "brand": null, "platform": "depop"}, {"id": "lst_006", "title": "Graphic Tee — 2003 Tour Bootleg Style", "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.", "category": "tops", "style_tags": ["graphic tee", "vintage", "grunge", "streetwear", "band tee"], "size": "L", "condition": "good", "price": 24.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_017", "title": "Mesh Long-Sleeve Top — Black", "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.", "category": "tops", "style_tags": ["y2k", "grunge", "goth", "layering"], "size": "S/M", "condition": "excellent", "price": 15.0, "colors": ["black"], "brand": null, "platform": "depop"}, {"id": "lst_033", "title": "Vintage Band Tee — Faded Grey", "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.", "category": "tops", "style_tags": ["vintage", "grunge", "band tee", "graphic tee", "streetwear"], "size": "L", "condition": "fair", "price": 19.0, "colors": ["grey", "charcoal"], "brand": null, "platform": "depop"}], "error": null}, "status": "ok", "duration_seconds": 0.4762133341282606}
+{"run_id": "89c902a4-e61f-4b00-b4a9-b7d7f1f16e62", "timestamp": "2026-11-18T03:25:19.519273+00:00", "operation": "search", "input": "", "output": {"results": [], "error": "Enter keywords and optionally 'on depop', 'on poshmark', or 'on thredUp'."}, "status": "error", "duration_seconds": 4.0333252400159836e-05}
+```
+
+**What It Costs**
+
+Ten successful searches measured by `capstone_cost.py` averaged
+**0.485029 elapsed seconds per run**, with a range of
+0.437739–0.756845 seconds. The raw duration
+fields are in `results/capstone_cost.jsonl`; the arithmetic is in
+`results/capstone_cost_summary.json`. This is wall-clock runtime, not CPU
+billing time or an API dollar estimate. Some measurement runs overlapped local
+verification work, so this is an observation on this machine, not a latency SLA.
+
+For 100 people each making one search per day:
+100 × 0.485029 = **48.502863
+seconds of aggregate elapsed search time/day**. Search makes zero model calls.
+This extrapolation does not measure concurrent-user throughput.
+
+Full outfit/caption runs cost more. The live platform-filtered smoke test
+reported 450 prompt + 160 output = 610 tokens across two Gemini calls; the
+unfiltered regression reported 440 + 137 = 577 tokens across two calls.
+Those are two individual observations, not a ten-run average for the full agent.
+No dollar claim is made for Gemini. See the saved smoke and regression text files.
+
+**Run Log and Verdicts**
+
+The criteria were committed in `3c2c24e`, before the first capstone execution;
+the first results commit is `39a10ab`. The older Unit 3/4 criteria and results
+remain above and in `criteria.md`; the capstone uses its own five criteria.
+Each trial reruns every case through the actual MCP transport with no search cache.
+`capstone_eval.py::main` produced the following baseline:
+
+| Criterion | Target per trial | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+| 2 | 3/3 | 0/3 | 0/3 | 0/3 | MISSED |
+| 3 | 2/2 | 2/2 | 2/2 | 2/2 | MET |
+| 4 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+| 5 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+
+Criterion 1 MET: all three supported marketplaces returned nonempty,
+platform-pure results. Criterion 2 MISSED: all three alternate capitalizations
+returned empty results in all three trials. The responsible stage was
+`tools.py::search_listings`: exact string equality compared user capitalization
+against the dataset's `depop`, `poshmark`, and `thredUp` values.
+The parser had already captured the platform correctly. This is one mechanism
+affecting all three cases, not three separate problems.
+
+Criterion 3 MET: unsupported-platform and impossible-price requests both
+returned an actionable message without model generation. Criterion 4 MET:
+unfiltered ID order matched the direct original search, and filtered results
+respected price and platform. Criterion 5 MET: all requests appended one
+complete record, including the rejected empty input.
+
+Actual output from the first baseline trial for each criterion follows.
+These are JSON case records from `results/capstone_before/results.json`.
+Search responses come from `capstone.py::search`, calling
+`mcp_server.py::search_listings` and `tools.py::search_listings`;
+criterion 5's record comes from `observability.py::logged`.
+
+Criterion 1:
+
+```json
+{
+  "query": "tee on depop",
+  "output": {
+    "parsed": {
+      "platform": "depop",
+      "description": "tee",
+      "size": null,
+      "max_price": null
+    },
+    "results": [
+      {
+        "id": "lst_002",
+        "title": "Y2K Baby Tee — Butterfly Print",
+        "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "vintage",
+          "graphic tee",
+          "cottagecore"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 18.0,
+        "colors": [
+          "white",
+          "pink",
+          "purple"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_006",
+        "title": "Graphic Tee — 2003 Tour Bootleg Style",
+        "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+        "category": "tops",
+        "style_tags": [
+          "graphic tee",
+          "vintage",
+          "grunge",
+          "streetwear",
+          "band tee"
+        ],
+        "size": "L",
+        "condition": "good",
+        "price": 24.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_017",
+        "title": "Mesh Long-Sleeve Top — Black",
+        "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "grunge",
+          "goth",
+          "layering"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 15.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_033",
+        "title": "Vintage Band Tee — Faded Grey",
+        "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+        "category": "tops",
+        "style_tags": [
+          "vintage",
+          "grunge",
+          "band tee",
+          "graphic tee",
+          "streetwear"
+        ],
+        "size": "L",
+        "condition": "fair",
+        "price": 19.0,
+        "colors": [
+          "grey",
+          "charcoal"
+        ],
+        "brand": null,
+        "platform": "depop"
+      }
+    ],
+    "error": null
+  },
+  "pass": true
+}
+```
+
+Criterion 2:
+
+```json
+{
+  "query": "tee on DEPOP",
+  "output": {
+    "parsed": {
+      "platform": "DEPOP",
+      "description": "tee",
+      "size": null,
+      "max_price": null
+    },
+    "results": [],
+    "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+  },
+  "expected_ids": [
+    "lst_002",
+    "lst_006",
+    "lst_017",
+    "lst_033"
+  ],
+  "pass": false
+}
+```
+
+Criterion 3:
+
+```json
+{
+  "query": "tee on ebay",
+  "output": {
+    "parsed": {
+      "platform": "ebay",
+      "description": "tee",
+      "size": null,
+      "max_price": null
+    },
+    "results": [],
+    "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+  },
+  "pass": true
+}
+```
+
+Criterion 4:
+
+```json
+{
+  "query": "graphic tee under $30",
+  "output": {
+    "parsed": {
+      "platform": "depop",
+      "description": "graphic tee",
+      "size": null,
+      "max_price": 30.0
+    },
+    "results": [
+      {
+        "id": "lst_002",
+        "title": "Y2K Baby Tee — Butterfly Print",
+        "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "vintage",
+          "graphic tee",
+          "cottagecore"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 18.0,
+        "colors": [
+          "white",
+          "pink",
+          "purple"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_006",
+        "title": "Graphic Tee — 2003 Tour Bootleg Style",
+        "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+        "category": "tops",
+        "style_tags": [
+          "graphic tee",
+          "vintage",
+          "grunge",
+          "streetwear",
+          "band tee"
+        ],
+        "size": "L",
+        "condition": "good",
+        "price": 24.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_017",
+        "title": "Mesh Long-Sleeve Top — Black",
+        "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "grunge",
+          "goth",
+          "layering"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 15.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_033",
+        "title": "Vintage Band Tee — Faded Grey",
+        "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+        "category": "tops",
+        "style_tags": [
+          "vintage",
+          "grunge",
+          "band tee",
+          "graphic tee",
+          "streetwear"
+        ],
+        "size": "L",
+        "condition": "fair",
+        "price": 19.0,
+        "colors": [
+          "grey",
+          "charcoal"
+        ],
+        "brand": null,
+        "platform": "depop"
+      }
+    ],
+    "error": null
+  },
+  "unfiltered": {
+    "parsed": {
+      "platform": null,
+      "description": "graphic tee",
+      "size": null,
+      "max_price": 30.0
+    },
+    "results": [
+      {
+        "id": "lst_002",
+        "title": "Y2K Baby Tee — Butterfly Print",
+        "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "vintage",
+          "graphic tee",
+          "cottagecore"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 18.0,
+        "colors": [
+          "white",
+          "pink",
+          "purple"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_006",
+        "title": "Graphic Tee — 2003 Tour Bootleg Style",
+        "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+        "category": "tops",
+        "style_tags": [
+          "graphic tee",
+          "vintage",
+          "grunge",
+          "streetwear",
+          "band tee"
+        ],
+        "size": "L",
+        "condition": "good",
+        "price": 24.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_017",
+        "title": "Mesh Long-Sleeve Top — Black",
+        "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+        "category": "tops",
+        "style_tags": [
+          "y2k",
+          "grunge",
+          "goth",
+          "layering"
+        ],
+        "size": "S/M",
+        "condition": "excellent",
+        "price": 15.0,
+        "colors": [
+          "black"
+        ],
+        "brand": null,
+        "platform": "depop"
+      },
+      {
+        "id": "lst_033",
+        "title": "Vintage Band Tee — Faded Grey",
+        "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+        "category": "tops",
+        "style_tags": [
+          "vintage",
+          "grunge",
+          "band tee",
+          "graphic tee",
+          "streetwear"
+        ],
+        "size": "L",
+        "condition": "fair",
+        "price": 19.0,
+        "colors": [
+          "grey",
+          "charcoal"
+        ],
+        "brand": null,
+        "platform": "depop"
+      }
+    ],
+    "error": null
+  },
+  "expected_ids": [
+    "lst_002",
+    "lst_006",
+    "lst_017",
+    "lst_033"
+  ],
+  "pass": true
+}
+```
+
+Criterion 5:
+
+```json
+{
+  "query": "tee on depop",
+  "output": {
+    "run_id": "72eb849e-3e8c-4847-af4c-4e89e35b2b81",
+    "timestamp": "2026-11-18T03:14:54.867021+00:00",
+    "operation": "search",
+    "input": "tee on depop",
+    "output": {
+      "parsed": {
+        "platform": "depop",
+        "description": "tee",
+        "size": null,
+        "max_price": null
+      },
+      "results": [
+        {
+          "id": "lst_002",
+          "title": "Y2K Baby Tee — Butterfly Print",
+          "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+          "category": "tops",
+          "style_tags": [
+            "y2k",
+            "vintage",
+            "graphic tee",
+            "cottagecore"
+          ],
+          "size": "S/M",
+          "condition": "excellent",
+          "price": 18.0,
+          "colors": [
+            "white",
+            "pink",
+            "purple"
+          ],
+          "brand": null,
+          "platform": "depop"
+        },
+        {
+          "id": "lst_006",
+          "title": "Graphic Tee — 2003 Tour Bootleg Style",
+          "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+          "category": "tops",
+          "style_tags": [
+            "graphic tee",
+            "vintage",
+            "grunge",
+            "streetwear",
+            "band tee"
+          ],
+          "size": "L",
+          "condition": "good",
+          "price": 24.0,
+          "colors": [
+            "black"
+          ],
+          "brand": null,
+          "platform": "depop"
+        },
+        {
+          "id": "lst_017",
+          "title": "Mesh Long-Sleeve Top — Black",
+          "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+          "category": "tops",
+          "style_tags": [
+            "y2k",
+            "grunge",
+            "goth",
+            "layering"
+          ],
+          "size": "S/M",
+          "condition": "excellent",
+          "price": 15.0,
+          "colors": [
+            "black"
+          ],
+          "brand": null,
+          "platform": "depop"
+        },
+        {
+          "id": "lst_033",
+          "title": "Vintage Band Tee — Faded Grey",
+          "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+          "category": "tops",
+          "style_tags": [
+            "vintage",
+            "grunge",
+            "band tee",
+            "graphic tee",
+            "streetwear"
+          ],
+          "size": "L",
+          "condition": "fair",
+          "price": 19.0,
+          "colors": [
+            "grey",
+            "charcoal"
+          ],
+          "brand": null,
+          "platform": "depop"
+        }
+      ],
+      "error": null
+    },
+    "status": "ok",
+    "duration_seconds": 0.4648635000921786
+  },
+  "pass": true
+}
+```
+
+**The Improvement**
+
+One measured improvement: replace exact platform equality with
+`item["platform"].casefold() == platform.strip().casefold()` in
+`tools.py::search_listings` (commit `e89155a`). Normalization happens before
+ranking and result truncation; it preserves the original platform spelling in
+returned listing data. This targets the diagnosed mismatch without changing
+ranking or relaxing any acceptance target.
+
+The full evaluation was rerun, three trials per criterion:
+
+| Criterion | Target per trial | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+| 2 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+| 3 | 2/2 | 2/2 | 2/2 | 2/2 | MET |
+| 4 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+| 5 | 3/3 | 3/3 | 3/3 | 3/3 | MET |
+
+| Criterion | Before (trials 1 / 2 / 3) | After (trials 1 / 2 / 3) |
+|---|---|---|
+| 1. Platform isolation | 3/3 · 3/3 · 3/3 | 3/3 · 3/3 · 3/3 |
+| 2. Case-independent syntax | 0/3 · 0/3 · 0/3 | 3/3 · 3/3 · 3/3 |
+| 3. Unavailable platform / no matches | 2/2 · 2/2 · 2/2 | 2/2 · 2/2 · 2/2 |
+| 4. Existing constraints | 3/3 · 3/3 · 3/3 | 3/3 · 3/3 · 3/3 |
+| 5. Structured logging | 3/3 · 3/3 · 3/3 | 3/3 · 3/3 · 3/3 |
+
+The fix helped: criterion 2 changed from MISSED to MET, with no change to the
+other four verdicts. Full after-output is committed in
+`results/capstone_after/results.json` and `runs.jsonl`.
+Three focused unit tests additionally check agent-to-tool propagation and
+listing handoff, exception logging, and optional platform behavior. They use
+explicit mocks at the generation/transport boundary; they are separate from the
+real-MCP acceptance runs. All three passed. Both live full-agent runs produced
+outfits and captions with caching disabled.
+
+**What's Still Broken**
+
+All five criteria met their targets after the fix. These tests cover only a
+small static dataset and a trailing `on PLATFORM` clause; they do not establish
+general natural-language understanding. Criterion 2 was narrow: next time its
+target would be 12/12 spelling/whitespace/punctuation cases per trial, covering
+all three platforms. The current target stays unchanged in this submission.
+
+The pre-existing size parser removes the word `size` but leaves the size token
+among the search keywords. That can affect ranking and was left outside this
+platform-only extension. There is no concurrent-load claim, log rotation, or
+recovery when the log destination cannot be written. The full model path still
+depends on network/provider availability, and caption quality was not scored
+by this capstone. API keys were kept outside git.
+
+The first next step would be to test and fix size-token extraction, because it
+can hide otherwise valid platform matches. That would get its own fixed tests
+and measured change instead of broadening this capstone after results.
+
+**How I Used AI**
+
+First, I asked Codex to choose and complete the Shape C / Path B capstone.
+It selected platform filtering and drafted the scope, criteria, implementation,
+and local run documentation. The work retained the existing FitFindr repository,
+MCP search, and generation flow. The capstone criteria were AI-drafted rather
+than written unaided by me; this does not satisfy the brief's unaided criteria
+authorship instruction.
+
+Second, I asked Codex to finish the testing, summarize the work, and commit it
+to GitHub. It ran the baseline, traced the capitalization miss to exact platform
+equality, changed that comparison, and reran the same criteria. The committed
+evidence includes the misses as well as the passing rerun; no criteria were
+lowered and no generated outputs were substituted for actual run records.

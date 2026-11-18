@@ -1,0 +1,136 @@
+Fresh checkout verification
+Python 3.13.16; new venv; pip install -r requirements-lock.txt
+pip check: No broken requirements found.
+
+Documented command output:
+{
+  "parsed": {
+    "platform": "depop",
+    "description": "graphic tee",
+    "size": null,
+    "max_price": 30.0
+  },
+  "results": [
+    {
+      "id": "lst_002",
+      "title": "Y2K Baby Tee — Butterfly Print",
+      "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+      "category": "tops",
+      "style_tags": [
+        "y2k",
+        "vintage",
+        "graphic tee",
+        "cottagecore"
+      ],
+      "size": "S/M",
+      "condition": "excellent",
+      "price": 18.0,
+      "colors": [
+        "white",
+        "pink",
+        "purple"
+      ],
+      "brand": null,
+      "platform": "depop"
+    },
+    {
+      "id": "lst_006",
+      "title": "Graphic Tee — 2003 Tour Bootleg Style",
+      "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+      "category": "tops",
+      "style_tags": [
+        "graphic tee",
+        "vintage",
+        "grunge",
+        "streetwear",
+        "band tee"
+      ],
+      "size": "L",
+      "condition": "good",
+      "price": 24.0,
+      "colors": [
+        "black"
+      ],
+      "brand": null,
+      "platform": "depop"
+    },
+    {
+      "id": "lst_017",
+      "title": "Mesh Long-Sleeve Top — Black",
+      "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+      "category": "tops",
+      "style_tags": [
+        "y2k",
+        "grunge",
+        "goth",
+        "layering"
+      ],
+      "size": "S/M",
+      "condition": "excellent",
+      "price": 15.0,
+      "colors": [
+        "black"
+      ],
+      "brand": null,
+      "platform": "depop"
+    },
+    {
+      "id": "lst_033",
+      "title": "Vintage Band Tee — Faded Grey",
+      "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+      "category": "tops",
+      "style_tags": [
+        "vintage",
+        "grunge",
+        "band tee",
+        "graphic tee",
+        "streetwear"
+      ],
+      "size": "L",
+      "condition": "fair",
+      "price": 19.0,
+      "colors": [
+        "grey",
+        "charcoal"
+      ],
+      "brand": null,
+      "platform": "depop"
+    }
+  ],
+  "error": null
+}
+
+After improvement, flannel on THREDUP:
+{
+  "parsed": {
+    "platform": "THREDUP",
+    "description": "flannel",
+    "size": null,
+    "max_price": null
+  },
+  "results": [
+    {
+      "id": "lst_003",
+      "title": "Oversized Flannel Shirt — Plaid Red/Black",
+      "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+      "category": "tops",
+      "style_tags": [
+        "grunge",
+        "vintage",
+        "flannel",
+        "streetwear",
+        "layering"
+      ],
+      "size": "XL (oversized)",
+      "condition": "good",
+      "price": 22.0,
+      "colors": [
+        "red",
+        "black"
+      ],
+      "brand": "Woolrich",
+      "platform": "thredUp"
+    }
+  ],
+  "error": null
+}
