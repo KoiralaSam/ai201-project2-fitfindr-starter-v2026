@@ -130,6 +130,7 @@ def run_agent(query: str, wardrobe: dict) -> dict:
             "description": parsed["description"],
             "size": parsed["size"],
             "max_price": parsed["max_price"],
+            "platform": parsed["platform"],
         }
         session["search_results"] = mcp_client.call_tool(
             "search_listings", search_inputs
@@ -147,7 +148,7 @@ def run_agent(query: str, wardrobe: dict) -> dict:
         if not session["search_results"]:
             session["error"] = (
                 "Nothing matched those keywords, size, and price. "
-                "Try a higher budget, drop the size, or use different words."
+                "Try a higher budget, drop the size, change the platform, or use different words."
             )
             return session
 
@@ -211,6 +212,22 @@ def _show(session: dict) -> None:
     print(f"  fit card: {session['fit_card']}")
 
 
+def parse_query(query: str) -> dict:
+    platform = re.search(r"\bon\s+([A-Za-z0-9_-]+)\s*[.!?]?\s*$", query, re.IGNORECASE)
+    if platform:
+        query = query[:platform.start()].strip()
+    price = re.search(r"\$(\d+(?:\.\d+)?)", query)
+    size = re.search(r"\bsize\s+([A-Za-z0-9/]+)", query, re.IGNORECASE)
+    description = re.sub(r"\$\d+(?:\.\d+)?", " ", query)
+    description = re.sub(r"\b(under|size)\b", " ", description, flags=re.IGNORECASE)
+    description = re.sub(r"\s+", " ", description).strip(" ,")
+    return {
+        "platform": platform.group(1) if platform else None,
+        "description": description,
+        "size": size.group(1) if size else None,
+        "max_price": float(price.group(1)) if price else None,
+    }
+
 if __name__ == "__main__":
     from utils.data_loader import get_example_wardrobe
 
@@ -232,14 +249,3 @@ if __name__ == "__main__":
     )
 
 
-def parse_query(query: str) -> dict:
-    price = re.search(r"\$(\d+(?:\.\d+)?)", query)
-    size = re.search(r"\bsize\s+([A-Za-z0-9/]+)", query, re.IGNORECASE)
-    description = re.sub(r"\$\d+(?:\.\d+)?", " ", query)
-    description = re.sub(r"\b(under|size)\b", " ", description, flags=re.IGNORECASE)
-    description = re.sub(r"\s+", " ", description).strip(" ,")
-    return {
-        "description": description,
-        "size": size.group(1) if size else None,
-        "max_price": float(price.group(1)) if price else None,
-    }
