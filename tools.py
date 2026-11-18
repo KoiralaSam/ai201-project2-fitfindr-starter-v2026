@@ -82,7 +82,7 @@ def search_listings(
     """
     listings = load_listings()
     if platform is not None:
-        listings = [item for item in listings if item["platform"] == platform]
+        listings = [item for item in listings if item["platform"].casefold() == platform.strip().casefold()]
     if max_price is None:
         price_filtered_listing = listings
     else:
