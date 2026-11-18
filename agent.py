@@ -249,5 +249,3 @@ if __name__ == "__main__":
         "\nThe second one should stop before the fit card. If both paths look "
         "the same,\nthe branch isn't doing anything yet."
     )
-
-
