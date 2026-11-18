@@ -1,0 +1,27 @@
+[1] parse_query
+      in:  graphic tee under $30 on depop
+      out: description='graphic tee', size=None, max_price=30.0
+[2] search_listings (via MCP)
+      in:  description='graphic tee', size=None, max_price=30.0
+      out: 4 items: Y2K Baby Tee — Butterfly Print, Graphic Tee — 2003 Tour Bootleg Style, Mesh Long-Sleeve Top — Black … +1 more
+[3] suggest_outfit
+      in:  Y2K Baby Tee — Butterfly Print ($18.0, depop), wardrobe items=10
+      out: Here is an outfit combining the Y2K Baby Tee with pieces from your wardrobe:  **Outfit 1: Y2K Streetwear Casua…
+[4] create_fit_card
+      in:  outfit for Y2K Baby Tee — Butterfly Print ($18.0, depop)
+      out: Scored this little butterfly baby tee on Depop for just $18, and it’s giving major early 2000s mall rat energy…
+
+  Found:    Y2K Baby Tee — Butterfly Print — $18.0 on depop
+
+  Outfit:   Here is an outfit combining the Y2K Baby Tee with pieces from your wardrobe:
+
+**Outfit 1: Y2K Streetwear Casual**
+*   **Top:** Y2K Baby Tee — Butterfly Print (New item)
+*   **Bottoms:** Baggy straight-leg jeans, dark wash
+*   **Outerwear:** Vintage black denim jacket
+*   **Shoes:** Chunky white sneakers
+*   **Accessories:** Black crossbody bag
+
+  Fit card: Scored this little butterfly baby tee on Depop for just $18, and it’s giving major early 2000s mall rat energy. Paired it with some baggy dark wash jeans, a vintage black denim jacket, and chunky white sneakers for the ultimate Y2K streetwear vibe. I am obsessed!
+
+2 model calls this session, 450 prompt + 160 output tokens

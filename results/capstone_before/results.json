@@ -1,0 +1,2474 @@
+[
+  {
+    "trial": 1,
+    "criteria": {
+      "1": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "jacket on poshmark",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "flannel on thredUp",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        }
+      ],
+      "2": [
+        {
+          "query": "tee on DEPOP",
+          "output": {
+            "parsed": {
+              "platform": "DEPOP",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": false
+        },
+        {
+          "query": "jacket ON POSHMARK",
+          "output": {
+            "parsed": {
+              "platform": "POSHMARK",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": false
+        },
+        {
+          "query": "flannel on thredup",
+          "output": {
+            "parsed": {
+              "platform": "thredup",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": false
+        }
+      ],
+      "3": [
+        {
+          "query": "tee on ebay",
+          "output": {
+            "parsed": {
+              "platform": "ebay",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        },
+        {
+          "query": "ballgown under $1 on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "ballgown",
+              "size": null,
+              "max_price": 1.0
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        }
+      ],
+      "4": [
+        {
+          "query": "graphic tee under $30",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": true
+        },
+        {
+          "query": "jacket under $50",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": true
+        },
+        {
+          "query": "flannel under $25",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": true
+        }
+      ],
+      "5": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "run_id": "72eb849e-3e8c-4847-af4c-4e89e35b2b81",
+            "timestamp": "2026-11-18T03:14:54.867021+00:00",
+            "operation": "search",
+            "input": "tee on depop",
+            "output": {
+              "parsed": {
+                "platform": "depop",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [
+                {
+                  "id": "lst_002",
+                  "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                  "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "vintage",
+                    "graphic tee",
+                    "cottagecore"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 18.0,
+                  "colors": [
+                    "white",
+                    "pink",
+                    "purple"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_006",
+                  "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                  "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                  "category": "tops",
+                  "style_tags": [
+                    "graphic tee",
+                    "vintage",
+                    "grunge",
+                    "streetwear",
+                    "band tee"
+                  ],
+                  "size": "L",
+                  "condition": "good",
+                  "price": 24.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_017",
+                  "title": "Mesh Long-Sleeve Top \u2014 Black",
+                  "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "grunge",
+                    "goth",
+                    "layering"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 15.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_033",
+                  "title": "Vintage Band Tee \u2014 Faded Grey",
+                  "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                  "category": "tops",
+                  "style_tags": [
+                    "vintage",
+                    "grunge",
+                    "band tee",
+                    "graphic tee",
+                    "streetwear"
+                  ],
+                  "size": "L",
+                  "condition": "fair",
+                  "price": 19.0,
+                  "colors": [
+                    "grey",
+                    "charcoal"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                }
+              ],
+              "error": null
+            },
+            "status": "ok",
+            "duration_seconds": 0.4648635000921786
+          },
+          "pass": true
+        },
+        {
+          "query": "tee on ebay",
+          "output": {
+            "run_id": "b0a87c9f-c729-4e0b-a453-07e2a245a6b1",
+            "timestamp": "2026-11-18T03:14:55.333170+00:00",
+            "operation": "search",
+            "input": "tee on ebay",
+            "output": {
+              "parsed": {
+                "platform": "ebay",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [],
+              "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+            },
+            "status": "error",
+            "duration_seconds": 0.4859553328715265
+          },
+          "pass": true
+        },
+        {
+          "query": "",
+          "output": {
+            "run_id": "289b8ee7-95b6-4aed-95c4-5f8a71660acb",
+            "timestamp": "2026-11-18T03:14:55.820367+00:00",
+            "operation": "search",
+            "input": "",
+            "output": {
+              "results": [],
+              "error": "Enter keywords and optionally 'on depop', 'on poshmark', or 'on thredUp'."
+            },
+            "status": "error",
+            "duration_seconds": 5.4541975259780884e-05
+          },
+          "pass": true
+        }
+      ]
+    }
+  },
+  {
+    "trial": 2,
+    "criteria": {
+      "1": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "jacket on poshmark",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "flannel on thredUp",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        }
+      ],
+      "2": [
+        {
+          "query": "tee on DEPOP",
+          "output": {
+            "parsed": {
+              "platform": "DEPOP",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": false
+        },
+        {
+          "query": "jacket ON POSHMARK",
+          "output": {
+            "parsed": {
+              "platform": "POSHMARK",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": false
+        },
+        {
+          "query": "flannel on thredup",
+          "output": {
+            "parsed": {
+              "platform": "thredup",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": false
+        }
+      ],
+      "3": [
+        {
+          "query": "tee on ebay",
+          "output": {
+            "parsed": {
+              "platform": "ebay",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        },
+        {
+          "query": "ballgown under $1 on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "ballgown",
+              "size": null,
+              "max_price": 1.0
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        }
+      ],
+      "4": [
+        {
+          "query": "graphic tee under $30",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": true
+        },
+        {
+          "query": "jacket under $50",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": true
+        },
+        {
+          "query": "flannel under $25",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": true
+        }
+      ],
+      "5": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "run_id": "575d5f5e-10b7-4789-bc01-f00d10af4cb2",
+            "timestamp": "2026-11-18T03:15:02.446495+00:00",
+            "operation": "search",
+            "input": "tee on depop",
+            "output": {
+              "parsed": {
+                "platform": "depop",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [
+                {
+                  "id": "lst_002",
+                  "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                  "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "vintage",
+                    "graphic tee",
+                    "cottagecore"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 18.0,
+                  "colors": [
+                    "white",
+                    "pink",
+                    "purple"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_006",
+                  "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                  "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                  "category": "tops",
+                  "style_tags": [
+                    "graphic tee",
+                    "vintage",
+                    "grunge",
+                    "streetwear",
+                    "band tee"
+                  ],
+                  "size": "L",
+                  "condition": "good",
+                  "price": 24.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_017",
+                  "title": "Mesh Long-Sleeve Top \u2014 Black",
+                  "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "grunge",
+                    "goth",
+                    "layering"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 15.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_033",
+                  "title": "Vintage Band Tee \u2014 Faded Grey",
+                  "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                  "category": "tops",
+                  "style_tags": [
+                    "vintage",
+                    "grunge",
+                    "band tee",
+                    "graphic tee",
+                    "streetwear"
+                  ],
+                  "size": "L",
+                  "condition": "fair",
+                  "price": 19.0,
+                  "colors": [
+                    "grey",
+                    "charcoal"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                }
+              ],
+              "error": null
+            },
+            "status": "ok",
+            "duration_seconds": 0.45628820825368166
+          },
+          "pass": true
+        },
+        {
+          "query": "tee on ebay",
+          "output": {
+            "run_id": "d9f26b47-7f91-4370-8d77-9384b70c044d",
+            "timestamp": "2026-11-18T03:15:02.903936+00:00",
+            "operation": "search",
+            "input": "tee on ebay",
+            "output": {
+              "parsed": {
+                "platform": "ebay",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [],
+              "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+            },
+            "status": "error",
+            "duration_seconds": 0.4836436668410897
+          },
+          "pass": true
+        },
+        {
+          "query": "",
+          "output": {
+            "run_id": "4093a82c-e6a0-4a08-8a4e-d9036970087d",
+            "timestamp": "2026-11-18T03:15:03.389283+00:00",
+            "operation": "search",
+            "input": "",
+            "output": {
+              "results": [],
+              "error": "Enter keywords and optionally 'on depop', 'on poshmark', or 'on thredUp'."
+            },
+            "status": "error",
+            "duration_seconds": 7.845787331461906e-05
+          },
+          "pass": true
+        }
+      ]
+    }
+  },
+  {
+    "trial": 3,
+    "criteria": {
+      "1": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "jacket on poshmark",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        },
+        {
+          "query": "flannel on thredUp",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "pass": true
+        }
+      ],
+      "2": [
+        {
+          "query": "tee on DEPOP",
+          "output": {
+            "parsed": {
+              "platform": "DEPOP",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": false
+        },
+        {
+          "query": "jacket ON POSHMARK",
+          "output": {
+            "parsed": {
+              "platform": "POSHMARK",
+              "description": "jacket",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": false
+        },
+        {
+          "query": "flannel on thredup",
+          "output": {
+            "parsed": {
+              "platform": "thredup",
+              "description": "flannel",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": false
+        }
+      ],
+      "3": [
+        {
+          "query": "tee on ebay",
+          "output": {
+            "parsed": {
+              "platform": "ebay",
+              "description": "tee",
+              "size": null,
+              "max_price": null
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        },
+        {
+          "query": "ballgown under $1 on depop",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "ballgown",
+              "size": null,
+              "max_price": 1.0
+            },
+            "results": [],
+            "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+          },
+          "pass": true
+        }
+      ],
+      "4": [
+        {
+          "query": "graphic tee under $30",
+          "output": {
+            "parsed": {
+              "platform": "depop",
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "graphic tee",
+              "size": null,
+              "max_price": 30.0
+            },
+            "results": [
+              {
+                "id": "lst_002",
+                "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "vintage",
+                  "graphic tee",
+                  "cottagecore"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 18.0,
+                "colors": [
+                  "white",
+                  "pink",
+                  "purple"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_006",
+                "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                "category": "tops",
+                "style_tags": [
+                  "graphic tee",
+                  "vintage",
+                  "grunge",
+                  "streetwear",
+                  "band tee"
+                ],
+                "size": "L",
+                "condition": "good",
+                "price": 24.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_017",
+                "title": "Mesh Long-Sleeve Top \u2014 Black",
+                "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                "category": "tops",
+                "style_tags": [
+                  "y2k",
+                  "grunge",
+                  "goth",
+                  "layering"
+                ],
+                "size": "S/M",
+                "condition": "excellent",
+                "price": 15.0,
+                "colors": [
+                  "black"
+                ],
+                "brand": null,
+                "platform": "depop"
+              },
+              {
+                "id": "lst_033",
+                "title": "Vintage Band Tee \u2014 Faded Grey",
+                "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                "category": "tops",
+                "style_tags": [
+                  "vintage",
+                  "grunge",
+                  "band tee",
+                  "graphic tee",
+                  "streetwear"
+                ],
+                "size": "L",
+                "condition": "fair",
+                "price": 19.0,
+                "colors": [
+                  "grey",
+                  "charcoal"
+                ],
+                "brand": null,
+                "platform": "depop"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_002",
+            "lst_006",
+            "lst_017",
+            "lst_033"
+          ],
+          "pass": true
+        },
+        {
+          "query": "jacket under $50",
+          "output": {
+            "parsed": {
+              "platform": "poshmark",
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "jacket",
+              "size": null,
+              "max_price": 50.0
+            },
+            "results": [
+              {
+                "id": "lst_004",
+                "title": "90s Track Jacket \u2014 Navy/White Stripe",
+                "description": "Authentic 90s track jacket with stripe detail down the sleeves. Full zip. Lightweight \u2014 great for layering.",
+                "category": "outerwear",
+                "style_tags": [
+                  "90s",
+                  "vintage",
+                  "athletic",
+                  "streetwear"
+                ],
+                "size": "M",
+                "condition": "excellent",
+                "price": 45.0,
+                "colors": [
+                  "navy",
+                  "white"
+                ],
+                "brand": "Champion",
+                "platform": "poshmark"
+              },
+              {
+                "id": "lst_007",
+                "title": "Denim Jacket \u2014 Light Wash, Cropped",
+                "description": "Cropped denim jacket in a light wash. Great structured shoulders. Blank canvas \u2014 no patches or pins but would be perfect to customize.",
+                "category": "outerwear",
+                "style_tags": [
+                  "denim",
+                  "vintage",
+                  "classic",
+                  "streetwear"
+                ],
+                "size": "S",
+                "condition": "excellent",
+                "price": 42.0,
+                "colors": [
+                  "light blue"
+                ],
+                "brand": "Wrangler",
+                "platform": "poshmark"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_004",
+            "lst_007"
+          ],
+          "pass": true
+        },
+        {
+          "query": "flannel under $25",
+          "output": {
+            "parsed": {
+              "platform": "thredUp",
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "unfiltered": {
+            "parsed": {
+              "platform": null,
+              "description": "flannel",
+              "size": null,
+              "max_price": 25.0
+            },
+            "results": [
+              {
+                "id": "lst_003",
+                "title": "Oversized Flannel Shirt \u2014 Plaid Red/Black",
+                "description": "Classic oversized flannel. Great layering piece. A few tiny pulls in the fabric but nothing visible when worn.",
+                "category": "tops",
+                "style_tags": [
+                  "grunge",
+                  "vintage",
+                  "flannel",
+                  "streetwear",
+                  "layering"
+                ],
+                "size": "XL (oversized)",
+                "condition": "good",
+                "price": 22.0,
+                "colors": [
+                  "red",
+                  "black"
+                ],
+                "brand": "Woolrich",
+                "platform": "thredUp"
+              }
+            ],
+            "error": null
+          },
+          "expected_ids": [
+            "lst_003"
+          ],
+          "pass": true
+        }
+      ],
+      "5": [
+        {
+          "query": "tee on depop",
+          "output": {
+            "run_id": "0136f2ae-c412-4977-be95-2adf8cfbb60c",
+            "timestamp": "2026-11-18T03:15:10.214952+00:00",
+            "operation": "search",
+            "input": "tee on depop",
+            "output": {
+              "parsed": {
+                "platform": "depop",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [
+                {
+                  "id": "lst_002",
+                  "title": "Y2K Baby Tee \u2014 Butterfly Print",
+                  "description": "Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "vintage",
+                    "graphic tee",
+                    "cottagecore"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 18.0,
+                  "colors": [
+                    "white",
+                    "pink",
+                    "purple"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_006",
+                  "title": "Graphic Tee \u2014 2003 Tour Bootleg Style",
+                  "description": "Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.",
+                  "category": "tops",
+                  "style_tags": [
+                    "graphic tee",
+                    "vintage",
+                    "grunge",
+                    "streetwear",
+                    "band tee"
+                  ],
+                  "size": "L",
+                  "condition": "good",
+                  "price": 24.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_017",
+                  "title": "Mesh Long-Sleeve Top \u2014 Black",
+                  "description": "Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.",
+                  "category": "tops",
+                  "style_tags": [
+                    "y2k",
+                    "grunge",
+                    "goth",
+                    "layering"
+                  ],
+                  "size": "S/M",
+                  "condition": "excellent",
+                  "price": 15.0,
+                  "colors": [
+                    "black"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                },
+                {
+                  "id": "lst_033",
+                  "title": "Vintage Band Tee \u2014 Faded Grey",
+                  "description": "Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.",
+                  "category": "tops",
+                  "style_tags": [
+                    "vintage",
+                    "grunge",
+                    "band tee",
+                    "graphic tee",
+                    "streetwear"
+                  ],
+                  "size": "L",
+                  "condition": "fair",
+                  "price": 19.0,
+                  "colors": [
+                    "grey",
+                    "charcoal"
+                  ],
+                  "brand": null,
+                  "platform": "depop"
+                }
+              ],
+              "error": null
+            },
+            "status": "ok",
+            "duration_seconds": 0.48101212503388524
+          },
+          "pass": true
+        },
+        {
+          "query": "tee on ebay",
+          "output": {
+            "run_id": "23985d51-dc2d-44e4-8fe4-134fdfca0dae",
+            "timestamp": "2026-11-18T03:15:10.697000+00:00",
+            "operation": "search",
+            "input": "tee on ebay",
+            "output": {
+              "parsed": {
+                "platform": "ebay",
+                "description": "tee",
+                "size": null,
+                "max_price": null
+              },
+              "results": [],
+              "error": "No matches. Change the keywords, budget, size, or platform (depop, poshmark, thredUp)."
+            },
+            "status": "error",
+            "duration_seconds": 0.44729337468743324
+          },
+          "pass": true
+        },
+        {
+          "query": "",
+          "output": {
+            "run_id": "48d1d6f5-f2e3-400a-b26d-3bac02a63af1",
+            "timestamp": "2026-11-18T03:15:11.145651+00:00",
+            "operation": "search",
+            "input": "",
+            "output": {
+              "results": [],
+              "error": "Enter keywords and optionally 'on depop', 'on poshmark', or 'on thredUp'."
+            },
+            "status": "error",
+            "duration_seconds": 4.3375417590141296e-05
+          },
+          "pass": true
+        }
+      ]
+    }
+  }
+]
