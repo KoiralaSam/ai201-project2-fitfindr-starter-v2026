@@ -1,0 +1,17 @@
+[1] parse_query
+      in:  tee under $30 on DEPOP
+      out: description='tee', size=None, max_price=30.0
+[2] search_listings (via MCP)
+      in:  description='tee', size=None, max_price=30.0
+      out: 1 items: Y2K Baby Tee — Butterfly Print
+[3] suggest_outfit
+      in:  Y2K Baby Tee — Butterfly Print ($18.0, depop), wardrobe items=0
+      out: outfit
+[4] create_fit_card
+      in:  outfit for Y2K Baby Tee — Butterfly Print ($18.0, depop)
+      out: caption
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.007s
+
+OK

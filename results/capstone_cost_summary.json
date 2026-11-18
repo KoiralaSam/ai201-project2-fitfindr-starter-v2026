@@ -1,0 +1,10 @@
+{
+  "runs": 10,
+  "metric": "elapsed wall-clock seconds, including MCP process startup",
+  "mean_seconds": 0.4850286333821714,
+  "min_seconds": 0.43773870822042227,
+  "max_seconds": 0.7568447086960077,
+  "seconds_for_100_searches": 48.50286333821714,
+  "model_calls_per_search": 0,
+  "scope": "search extension only; excludes Gemini outfit/caption calls"
+}
