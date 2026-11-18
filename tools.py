@@ -32,6 +32,7 @@ def search_listings(
     description: str,
     size: str | None = None,
     max_price: float | None = None,
+    platform: str | None = None,
 ) -> list[dict]:
     """
     Search the listings data for items matching a description, and optionally a
@@ -80,6 +81,8 @@ def search_listings(
         python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
     """
     listings = load_listings()
+    if platform is not None:
+        listings = [item for item in listings if item["platform"] == platform]
     if max_price is None:
         price_filtered_listing = listings
     else:

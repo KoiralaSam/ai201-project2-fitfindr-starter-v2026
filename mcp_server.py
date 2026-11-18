@@ -74,9 +74,14 @@ def search_listings(
     description: str,
     size: str | None = None,
     max_price: float | None = None,
+    platform: str | None = None,
 ) -> list[dict]:
-    """This tool finds listings when there is a description. It needs sizes such as S/M, M, L, XL, etc. and a max price to filter the listings. It returns a list of dictionaries containing the listing information."""
-    return _search_listings_impl(description, size, max_price)
+    """Search local listings by keywords, optional size, maximum USD price, and platform.
+
+    Platforms: depop, poshmark, thredUp. None searches all platforms.
+    Returns ranked listing dictionaries, or [] when no listing satisfies the filters.
+    """
+    return _search_listings_impl(description, size, max_price, platform)
 
 # ──────────────────────────────────────────────────────────────────────────────
 #
